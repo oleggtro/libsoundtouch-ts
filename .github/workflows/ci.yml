@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Install dependencies (Yarn)
+        run: yarn install --frozen-lockfile
+
+      - name: Build (if present)
+        run: |
+          if node -e "process.exit(Boolean(require('./package.json').scripts && require('./package.json').scripts.build) ? 0 : 1)"; then
+            yarn build
+          else
+            echo "No build script, skipping"
+          fi
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Run linter (if present)
+        run: |
+          if node -e "process.exit(Boolean(require('./package.json').scripts && require('./package.json').scripts.lint) ? 0 : 1)"; then
+            yarn lint
+          else
+            echo "No lint script, skipping"
+          fi
