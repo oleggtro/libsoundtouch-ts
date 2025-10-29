@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { SoundTouchApiClient } from "../src/client.js";
 import nock from "nock";
-import { SoundTouchAPI } from "../src/index.js";
 
 const mockXML = `<?xml version="1.0" encoding="UTF-8" ?>
 <bassCapabilities deviceID="1004567890AA">
@@ -12,10 +12,10 @@ const mockXML = `<?xml version="1.0" encoding="UTF-8" ?>
 
 describe("SoundTouchAPI /bassCapabilities endpoint", () => {
   const baseURL = "http://localhost:8090";
-  let api: SoundTouchAPI;
+  let api: SoundTouchApiClient;
 
   beforeEach(() => {
-    api = new SoundTouchAPI(baseURL);
+    api = new SoundTouchApiClient(baseURL);
     nock.cleanAll();
   });
 
@@ -28,7 +28,7 @@ describe("SoundTouchAPI /bassCapabilities endpoint", () => {
       .get("/bassCapabilities")
       .reply(200, mockXML, { "Content-Type": "application/xml" });
 
-    const bassCapabilities = await api.bassCapabilities.getBassCapabilities();
+    const bassCapabilities = await api.getBassCapabilities();
 
     expect(bassCapabilities).toMatchObject({
       bassCapabilities: {

@@ -1,19 +1,23 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser } from "fast-xml-parser";
+import { BassCapabilities, DeviceInfo } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
   private xmlParser: XMLParser;
+  private baseURL: string;
 
-  constructor(baseURL: string, apiKey?: string) {
+  constructor(baseURL_param: string, apiKey?: string) {
     this.client = axios.create({
-      baseURL,
+      baseURL: baseURL_param,
       headers: {
         Accept: "application/xml, text/xml, */*;q=0.8",
         ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
       },
       transformResponse: [], // prevent axios from auto-parsing JSON
     });
+
+    this.baseURL = baseURL_param;
 
     this.xmlParser = new XMLParser({
       ignoreAttributes: false, // keep @attributes
@@ -38,7 +42,17 @@ export class SoundTouchApiClient {
   }
 
   async get<T>(path: string, config?: AxiosRequestConfig): Promise<T> {
-    const res = await this.client.get(path, config);
+    const res = await this.client.get(this.baseURL + path, config);
     return this.parseResponse<T>(res);
   }
+
+
+
+    async getInfo(): Promise<DeviceInfo> {
+      return this.get<DeviceInfo>("/info");
+    }
+
+    async getBassCapabilities(): Promise<BassCapabilities> {
+      return this.get<BassCapabilities>("/bassCapabilities");
+    }
 }
