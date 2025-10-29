@@ -34,4 +34,27 @@ describe("SoundTouchAPI /audiodspcontrols endpoint", () => {
       },
     });
   });
+
+  it("test setAudioDSPMode to Normal", async () => {
+    nock(baseURL)
+      .post("/audiodspcontrols", "<audiodspcontrols audiomode=\"AUDIO_MODE_NORMAL\" />")
+      .matchHeader("Content-Type", "application/xml")
+      .reply(200);
+
+    await api.setAudioDSPControls(AudioDSPMode.Normal);
+    // Ensure the mocked endpoint was called
+    expect(nock.isDone()).toBe(true);
+  }); 
+  
+  it("test setAudioDSPMode to Dialog", async () => {
+    nock(baseURL)
+      .post("/audiodspcontrols", "<audiodspcontrols audiomode=\"AUDIO_MODE_DIALOG\" />")
+      .matchHeader("Content-Type", "application/xml")
+      .reply(200);
+
+    await api.setAudioDSPControls(AudioDSPMode.Dialog);
+    // Ensure the mocked endpoint was called
+    expect(nock.isDone()).toBe(true);
+  });
+
 });
