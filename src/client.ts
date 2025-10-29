@@ -48,16 +48,41 @@ export class SoundTouchApiClient {
 
 
 
+  /**
+   * Gets information about the connected soundtouch device.
+   * @returns DeviceInfo about the selected unit
+   */
     async getInfo(): Promise<DeviceInfo> {
       return this.get<DeviceInfo>("/info");
     }
 
+    /**
+     * Get the bass capabilities of the device.
+     * @returns The devices BassCapabilities
+     */
     async getBassCapabilities(): Promise<BassCapabilities> {
       return this.get<BassCapabilities>("/bassCapabilities");
     }
 
 
+    /**
+     * Gets the currently set bass level.
+     * @returns The current Bass level.
+     */
     async getBass(): Promise<Bass> {
       return this.get<Bass>("/bass");
     }
+
+
+    /** 
+     * Sets the Bass level to the specified value.
+     * @param value The desired Bass level (must be between -9 and 0).
+     */
+    async setBass(value: number): Promise<void> {
+      await this.client.post(this.baseURL + "/bass", `<bass>${value}</bass>`, {
+        headers: { "Content-Type": "application/xml" },
+      });
+    }
+
+
 }

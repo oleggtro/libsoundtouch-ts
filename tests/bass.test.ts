@@ -36,4 +36,17 @@ describe("SoundTouchAPI /bass endpoint", () => {
       },
     });
   });
+
+  it("setBass sends XML body and Content-Type header", async () => {
+    // Expect a POST to /bass with XML body and proper header
+    nock(baseURL)
+      .post("/bass", "<bass>-9</bass>")
+      .matchHeader("Content-Type", "application/xml")
+      .reply(200);
+
+    await api.setBass(-9);
+
+    // Ensure the mocked endpoint was called
+    expect(nock.isDone()).toBe(true);
+  });
 });
