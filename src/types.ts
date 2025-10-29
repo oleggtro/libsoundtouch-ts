@@ -107,3 +107,23 @@ export interface ClockDisplay {
     "@_userUtcTime": number; 
   }};
 }
+
+export interface ClockTime {
+  clockTime: {
+    "@_utcTime": number;
+    "@_cueMusic": number;
+    "@_timeFormat": ClockTimeFormat;
+    "@_brightness": number;
+    "@_clockError": number;
+    "@_utcSyncTime": number;
+    localTime: {
+      "@_year": number;
+      "@_month": number;
+      "@_dayOfMonth": number;
+      "@_dayOfWeek": number;
+      "@_hour": number;
+      "@_minute": number;
+      "@_second": number;
+    };
+  }
+}
