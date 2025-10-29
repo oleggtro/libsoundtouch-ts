@@ -89,3 +89,21 @@ export interface Capabilities {
     disablePowerSaving?: boolean;
   };
 }
+
+// i dont know what other formats there are
+export enum ClockTimeFormat {
+  h12 = "TIME_FORMAT_12HOUR_ID",
+  h24 = "TIME_FORMAT_24HOUR_ID",
+}
+
+export interface ClockDisplay {
+  clockDisplay: {
+    clockConfig: {
+    "@_timezoneInfo": string;
+    "@_userEnable": boolean;
+    "@_timeFormat": ClockTimeFormat; 
+    "@_userOffsetMinute": number; 
+    "@_brightnessLevel": number; 
+    "@_userUtcTime": number; 
+  }};
+}

@@ -29,7 +29,7 @@ describe("SoundTouchAPI /audiodspcontrols endpoint", () => {
     expect(audioDSPControls).toMatchObject({
       audiodspcontrols: {
         audiomode: AudioDSPMode.Normal,
-        videosyncaudiodelay: "0",
+        videosyncaudiodelay: 0,
         supportedaudiomodes: "AUDIO_MODE_NORMAL|AUDIO_MODE_DIALOG",
       },
     });

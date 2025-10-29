@@ -80,7 +80,7 @@ describe("SoundTouchAPI /capabilities endpoint", () => {
         },
         dspCapabilities: {
           dspMonoStereo: {
-            available: "false",
+            available: false,
           },
         },
         lightswitch: false,
@@ -110,7 +110,7 @@ describe("SoundTouchAPI /capabilities endpoint", () => {
         },
         dspCapabilities: {
           dspMonoStereo: {
-            available: "false",
+            available: false,
           },
         },
         lightswitch: false,

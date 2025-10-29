@@ -45,7 +45,7 @@ describe("SoundTouchApiClient", () => {
 
     expect(result).toEqual({
       info: {
-        deviceID: "123456",
+        deviceID: 123456,
         name: "Mock Device",
         type: "MockType",
       },
