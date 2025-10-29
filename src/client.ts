@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser } from "fast-xml-parser";
-import { Bass, BassCapabilities, DeviceInfo } from "./types.js";
+import { AudioDSPControls, Bass, BassCapabilities, DeviceInfo } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -84,5 +84,12 @@ export class SoundTouchApiClient {
       });
     }
 
+    /**
+     * Get the current Audio DSP Controls
+     * @returns The current Audio DSP Controls
+     */
+    async getAudioDSPControls(): Promise<AudioDSPControls> {
+      return this.get<AudioDSPControls>("/audiodspcontrols");
+    }
 
 }

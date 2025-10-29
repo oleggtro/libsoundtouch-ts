@@ -43,3 +43,16 @@ export interface Bass {
     actualbass: number;
   };
 }
+
+export enum AudioDSPMode {
+  Normal = "AUDIO_MODE_NORMAL",
+  Dialog = "AUDIO_MODE_DIALOG"
+}
+
+export interface AudioDSPControls {
+  audiodspcontrols: {
+    "@_audiomode": AudioDSPMode;
+    "@_videosyncaudiodelay": string;
+    "@_supportedaudiomodes": string;
+  };
+}
