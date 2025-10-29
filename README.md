@@ -21,8 +21,8 @@ Completed features so far:
 - [x] Bluetooth - Clear Pairing List
 - [x] Bluetooth - Enter Pairing Mode
 - [x] Capabilities
-- [ ] Clock Display
-- [ ] Clock Time
+- [x] Clock Display
+- [x] Clock Time
 - [ ] Configuration Status
 - [ ] DSP Mono Stereo
 - [ ] Group - Status
