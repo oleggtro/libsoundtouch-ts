@@ -61,3 +61,31 @@ export interface BluetoothInfo {
   "@_BluetoothMACAddress"?: string
   status?: string;
 }
+
+export interface Capabilities {
+  capabilities: {
+    "@_deviceID"?: string;
+    networkConfig?: {
+      dualMode?: boolean;
+      wsapiproxy?: boolean;
+      allInterfacesSupported?: Record<string, unknown> | null;
+      wlanInterfaces?: Record<string, unknown> | null;
+      security?: Record<string, unknown> | null;
+    };
+    dspCapabilities?: {
+      dspMonoStereo?: {
+        "@_available"?: boolean;
+      };
+    };
+    lightswitch?: boolean;
+    clockDisplay?: boolean;
+    capability?: Array<{
+      "@_name"?: string;
+      "@_url"?: string;
+      "@_info"?: string;
+    }>;
+    lrStereoCapable?: boolean;
+    bcoresetCapable?: boolean;
+    disablePowerSaving?: boolean;
+  };
+}

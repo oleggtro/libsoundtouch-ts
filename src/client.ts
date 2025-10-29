@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, DeviceInfo } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, DeviceInfo } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -126,7 +126,7 @@ export class SoundTouchApiClient {
     }
 
 
-        /**
+     /**
      * Clears Bluetooth pairing info
      * @returns void
      */
@@ -138,4 +138,11 @@ export class SoundTouchApiClient {
         return this.parseResponse<BluetoothInfo>(res as any);
     }
 
+    /**
+     * Gets the devices Capabilities
+     * @returns Capabilities
+     */
+    async getCapabilities(): Promise<Capabilities> {
+      return this.get<Capabilities>("/capabilities");
+    }
 }

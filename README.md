@@ -13,14 +13,14 @@ Completed features so far:
 - [x] get DeviceInfo
 - [x] get currently set AudioDSPControls
 - [x] set new AudioDSPMode for the DSP
-- [ ] Audio Product Level Controls
+- [ ] Audio Product Level Controls 
 - [ ] Audio Product Tone Controls
 - [ ] Audio Speaker Attributes
 - [ ] Balance
 - [x] Bluetooth - Info
 - [x] Bluetooth - Clear Pairing List
 - [x] Bluetooth - Enter Pairing Mode
-- [ ] Capabilities
+- [x] Capabilities
 - [ ] Clock Display
 - [ ] Clock Time
 - [ ] Configuration Status
