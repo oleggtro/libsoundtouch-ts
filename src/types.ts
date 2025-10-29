@@ -24,3 +24,14 @@ export interface DeviceInfo {
     regionCode: string;
   };
 }
+
+
+export interface BassCapabilities {
+  bassCapabilities: {
+    "@_deviceID"?: string;
+    bassAvailable: boolean;
+    bassMin: number;
+    bassMax: number;
+    bassDefault: number;
+  };
+}
