@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, DeviceInfo } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, DeviceInfo } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -102,6 +102,40 @@ export class SoundTouchApiClient {
       await this.client.post(this.baseURL + "/audiodspcontrols", `<audiodspcontrols audiomode="${mode}" />`, {
         headers: { "Content-Type": "application/xml" },
       });
+    }
+
+    /**
+     * Gets the current Bluetooth Status if the current device
+     * @returns BluetoothInfo
+     */
+    async getBluetoothInfo(): Promise<BluetoothInfo> {
+      return this.get<BluetoothInfo>("/bluetoothInfo");
+    }
+
+
+    /**
+     * Clears Bluetooth pairing info
+     * @returns void
+     */
+    async clearBluetoothPairingInfo(): Promise<BluetoothInfo> {
+        const res = await this.client.post(this.baseURL + "/clearBluetoothPaired", undefined, {
+          headers: { "Content-Type": "application/xml" },
+        });
+
+        return this.parseResponse<BluetoothInfo>(res as any);
+    }
+
+
+        /**
+     * Clears Bluetooth pairing info
+     * @returns void
+     */
+    async enterBluetoothPairingMode(): Promise<BluetoothInfo> {
+        const res = await this.client.post(this.baseURL + "/enterBluetoothPairing", undefined, {
+          headers: { "Content-Type": "application/xml" },
+        });
+
+        return this.parseResponse<BluetoothInfo>(res as any);
     }
 
 }

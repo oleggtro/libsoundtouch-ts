@@ -17,9 +17,9 @@ Completed features so far:
 - [ ] Audio Product Tone Controls
 - [ ] Audio Speaker Attributes
 - [ ] Balance
-- [ ] Bluetooth - Info
-- [ ] Bluetooth - Clear Pairing List
-- [ ] Bluetooth - Enter Pairing Mode
+- [x] Bluetooth - Info
+- [x] Bluetooth - Clear Pairing List
+- [x] Bluetooth - Enter Pairing Mode
 - [ ] Capabilities
 - [ ] Clock Display
 - [ ] Clock Time

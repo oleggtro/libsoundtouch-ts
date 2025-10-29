@@ -56,3 +56,8 @@ export interface AudioDSPControls {
     "@_supportedaudiomodes": string;
   };
 }
+
+export interface BluetoothInfo {
+  "@_BluetoothMACAddress"?: string
+  status?: string;
+}
