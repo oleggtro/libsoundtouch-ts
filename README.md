@@ -23,7 +23,7 @@ Completed features so far:
 - [x] Capabilities
 - [x] Clock Display
 - [x] Clock Time
-- [ ] Configuration Status
+- [x] Configuration Status
 - [ ] DSP Mono Stereo
 - [ ] Group - Status
 - [ ] Group - Add Stereo Pair

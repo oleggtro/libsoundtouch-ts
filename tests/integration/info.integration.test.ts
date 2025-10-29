@@ -1,13 +1,12 @@
 // tests/integration/info.integration.test.ts
 import { describe, it, expect } from "vitest";
-import { SoundTouchAPI } from "../../src/index.js";
+import { SoundTouchApiClient } from "../../src/client.js";
 
 describe.skipIf(!process.env.DEVICE_URL)("SoundTouch real integration", () => {
   it("fetches live /info data", async () => {
-    const api = new SoundTouchAPI(process.env.DEVICE_URL!);
-    const info = await api.info.getInfo();
+    const api = new SoundTouchApiClient(process.env.DEVICE_URL!);
+    const info = await api.getInfo();
 
     expect(info.info.name).toMatch(/SoundTouch/);
-    console.log(info);
   });
 });

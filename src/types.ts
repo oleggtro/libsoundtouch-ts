@@ -127,3 +127,15 @@ export interface ClockTime {
     };
   }
 }
+
+export enum SoundTouchConfigurationStatus {
+  Configured = "SOUNDTOUCH_CONFIGURED",
+  NotConfigured = "SOUNDTOUCH_NOT_CONFIGURED",
+  Configuring = "SOUNDTOUCH_CONFIGURING",
+}
+
+export interface ConfigurationStatus {
+  SoundTouchConfigurationStatus: {
+    "@_status": SoundTouchConfigurationStatus;
+  };
+}
