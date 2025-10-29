@@ -35,3 +35,11 @@ export interface BassCapabilities {
     bassDefault: number;
   };
 }
+
+export interface Bass {
+  bassCapabilities: {
+    "@_deviceID"?: string;
+    targetbass: number;
+    actualbass: number;
+  };
+}

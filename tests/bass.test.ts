@@ -1,15 +1,14 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import nock from "nock";
 import { SoundTouchApiClient } from "../src/client.js";
+import nock from "nock";
 
-const mockXML = `<?xml version="1.0" encoding="UTF-8"?>
-<info deviceID="606405FA8761">
-  <name>SoundTouch 10 Küche</name>
-  <type>SoundTouch 10</type>
-  <countryCode>GB</countryCode>
-</info>`;
+const mockXML = `<?xml version="1.0" encoding="UTF-8" ?>
+<bass deviceID="1004567890AA">
+  <targetbass>0</targetbass>
+  <actualbass>0</actualbass>
+</bass>`;
 
-describe("SoundTouchAPI /info endpoint", () => {
+describe("SoundTouchAPI /bass endpoint", () => {
   const baseURL = "http://localhost:8090";
   let api: SoundTouchApiClient;
 
@@ -24,17 +23,16 @@ describe("SoundTouchAPI /info endpoint", () => {
 
   it("parses XML response correctly", async () => {
     nock(baseURL)
-      .get("/info")
+      .get("/bass")
       .reply(200, mockXML, { "Content-Type": "application/xml" });
 
-    const info = await api.getInfo();
+    const bass = await api.getBass();
 
-    expect(info).toMatchObject({
-      info: {
-        deviceID: "606405FA8761",
-        name: "SoundTouch 10 Küche",
-        type: "SoundTouch 10",
-        countryCode: "GB",
+    expect(bass).toMatchObject({
+      bass: {
+        deviceID: "1004567890AA",
+        targetbass: 0,
+        actualbass: 0,
       },
     });
   });

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser } from "fast-xml-parser";
-import { BassCapabilities, DeviceInfo } from "./types.js";
+import { Bass, BassCapabilities, DeviceInfo } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -54,5 +54,10 @@ export class SoundTouchApiClient {
 
     async getBassCapabilities(): Promise<BassCapabilities> {
       return this.get<BassCapabilities>("/bassCapabilities");
+    }
+
+
+    async getBass(): Promise<Bass> {
+      return this.get<Bass>("/bass");
     }
 }
