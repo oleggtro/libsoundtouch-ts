@@ -5,7 +5,90 @@
 
 TypeScript wrapper for Bose SoundTouch devices' local HTTP API.
 
-
+## Features
+Completed features so far:
+- [x] get current Bass Level 
+- [x] set new Bass Level 
+- [x] get devices BassCapabilities
+- [x] get DeviceInfo
+- [x] get currently set AudioDSPControls
+- [x] set new AudioDSPMode for the DSP
+- [ ] Audio Product Level Controls
+- [ ] Audio Product Tone Controls
+- [ ] Audio Speaker Attributes
+- [ ] Balance
+- [ ] Bluetooth - Info
+- [ ] Bluetooth - Clear Pairing List
+- [ ] Bluetooth - Enter Pairing Mode
+- [ ] Capabilities
+- [ ] Clock Display
+- [ ] Clock Time
+- [ ] Configuration Status
+- [ ] DSP Mono Stereo
+- [ ] Group - Status
+- [ ] Group - Add Stereo Pair
+- [ ] Group - Remove Stereo Member
+- [ ] Group - Update Name
+- [ ] Introspect Data
+- [ ] Key Press, Release
+- [ ] Language
+- [ ] Media Servers List
+- [ ] Music Library - Get Items
+- [ ] Music Library - Search
+- [ ] Music Service - Add Station
+- [ ] Music Service - Get My Stations
+- [ ] Music Service - Remove Station
+- [ ] Music Service - Search Stations
+- [ ] Music Service - Track Info
+- [ ] Music Service - Remove Account
+- [ ] Music Service - Set Account
+- [ ] Name
+- [ ] Network Info
+- [ ] Network Status
+- [ ] Now Playing Status
+- [ ] Play Notification Beep
+- [ ] Play TTS Message
+- [ ] Play URL
+- [ ] Power Management
+- [ ] Power Standby
+- [ ] Power Standby Low-Power
+- [ ] Preset List
+- [ ] Preset Remove
+- [ ] Preset Store
+- [ ] Rebroadcast Latency Mode
+- [ ] Recents List
+- [ ] Select (AIRPLAY)
+- [ ] Select (BLUETOOTH)
+- [ ] Select (LOCAL_INTERNET_RADIO)
+- [ ] Select (LOCAL_MUSIC)
+- [ ] Select (PANDORA)
+- [ ] Select (PRODUCT TV)
+- [ ] Select (PRODUCT HDMI1)
+- [ ] Select (SPOTIFY)
+- [ ] Select (STORED_MUSIC)
+- [ ] Select (TUNEIN)
+- [ ] Select Last SoundTouch Source
+- [ ] Select Last Source
+- [ ] Select Local Source
+- [ ] Service Availability
+- [ ] Software Update Check
+- [ ] Software Update Query
+- [ ] Sources List
+- [ ] Standby
+- [ ] SupportedURLs
+- [ ] System Timeout
+- [ ] Token Request
+- [ ] User Play Control
+- [ ] User Ratings
+- [ ] Volume
+- [ ] Wireless - Add Wireless Profile
+- [ ] Wireless - Get Active Profile
+- [ ] Wireless - Select Last Source
+- [ ] Wireless - Site Survey
+- [ ] Zone Add Member
+- [ ] Zone Create
+- [ ] Zone Remove Member
+- [ ] Zone Status
 
 ## Contributing
  - API Docs: [libsoundtouch](https://github.com/CharlesBlonde/libsoundtouch/blob/master/docs/index.rst)
