@@ -479,3 +479,7 @@ export enum PlaybackSource {
   StoredMusic = "STORED_MUSIC",
   Pandora = "PANDORA",
 }
+
+export interface PlayNotificationBeepResponse {
+  status: string;
+}

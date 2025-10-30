@@ -46,7 +46,7 @@ Completed features so far:
 - [x] Network Info
 - [x] Network Status
 - [x] Now Playing Status
-- [ ] Play Notification Beep
+- [x] Play Notification Beep
 - [ ] Play TTS Message
 - [ ] Play URL
 - [ ] Power Management
