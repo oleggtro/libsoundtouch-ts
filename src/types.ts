@@ -284,3 +284,8 @@ export enum KeySender {
 export interface KeyPressResponse {
   status: string;
 }
+
+export interface Language {
+  // i dont know what the numbers mean
+  sysLanguage: number;
+}

@@ -31,7 +31,7 @@ Completed features so far:
 - [x] Group - Update Name
 - [x] Introspect Data
 - [x] Key Press, Release
-- [ ] Language
+- [x] Language
 - [ ] Media Servers List
 - [ ] Music Library - Get Items
 - [ ] Music Library - Search
