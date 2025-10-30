@@ -497,3 +497,17 @@ export interface PlayURLRequest {
 export interface PlayURLResponse {
   status: string;
 }
+
+export interface PowerManagementResponse {
+  powerManagementResponse: {
+    powerState: PowerState;
+    battery: {
+      capable: boolean;
+    };
+  };
+}
+
+export enum PowerState {
+  FullPower = "FullPower",
+  // add other states if known
+}
