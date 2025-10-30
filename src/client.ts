@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, IntrospectRequest, Key, KeyPressResponse, KeyPressState, KeySender, Language, RemoveGroup, SpotifyAccountIntrospectResponse } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, IntrospectRequest, Key, KeyPressResponse, KeyPressState, KeySender, Language, ListMediaServersResponse, RemoveGroup, SpotifyAccountIntrospectResponse } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -285,6 +285,11 @@ export class SoundTouchApiClient {
      */
     async getLanguage(): Promise<Language> {
       return this.get<Language>("/language");
+    }
+
+
+    async getMediaServersList(): Promise<ListMediaServersResponse> {
+      return this.get<ListMediaServersResponse>("/listMediaServers");
     }
 
 }

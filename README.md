@@ -32,7 +32,7 @@ Completed features so far:
 - [x] Introspect Data
 - [x] Key Press, Release
 - [x] Language
-- [ ] Media Servers List
+- [x] Media Servers List
 - [ ] Music Library - Get Items
 - [ ] Music Library - Search
 - [ ] Music Service - Add Station

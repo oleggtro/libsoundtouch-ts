@@ -99,13 +99,14 @@ export enum ClockTimeFormat {
 export interface ClockDisplay {
   clockDisplay: {
     clockConfig: {
-    "@_timezoneInfo": string;
-    "@_userEnable": boolean;
-    "@_timeFormat": ClockTimeFormat; 
-    "@_userOffsetMinute": number; 
-    "@_brightnessLevel": number; 
-    "@_userUtcTime": number; 
-  }};
+      "@_timezoneInfo": string;
+      "@_userEnable": boolean;
+      "@_timeFormat": ClockTimeFormat;
+      "@_userOffsetMinute": number;
+      "@_brightnessLevel": number;
+      "@_userUtcTime": number;
+    }
+  };
 }
 
 export interface ClockTime {
@@ -145,7 +146,7 @@ export interface DSPMonoStereo {
   DSPMonoStereo: {
     "@_deviceID": string;
     mono: {
-    "@_enable": false;
+      "@_enable": false;
     }
   }
 }
@@ -288,4 +289,21 @@ export interface KeyPressResponse {
 export interface Language {
   // i dont know what the numbers mean
   sysLanguage: number;
+}
+
+
+export interface ListMediaServersResponse {
+  ListMediaServersResponse: {
+    media_server: Array<MediaServer>;
+  };
+}
+export interface MediaServer {
+  "@_id": string;
+  "@_mac": string;
+  "@_ip": string;
+  "@_manufacturer": string;
+  "@_model_name": string;
+  "@_friendly_name": string;
+  "@_model_description": string;
+  "@_location": string;
 }
