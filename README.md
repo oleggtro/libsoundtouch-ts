@@ -28,7 +28,7 @@ Completed features so far:
 - [x] Group - Status
 - [x] Group - Add Stereo Pair
 - [x] Group - Remove Stereo Member
-- [ ] Group - Update Name
+- [x] Group - Update Name
 - [ ] Introspect Data
 - [ ] Key Press, Release
 - [ ] Language
