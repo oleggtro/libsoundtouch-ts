@@ -30,7 +30,7 @@ Completed features so far:
 - [x] Group - Remove Stereo Member
 - [x] Group - Update Name
 - [x] Introspect Data
-- [ ] Key Press, Release
+- [x] Key Press, Release
 - [ ] Language
 - [ ] Media Servers List
 - [ ] Music Library - Get Items

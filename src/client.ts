@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, IntrospectRequest, RemoveGroup, SpotifyAccountIntrospectResponse } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, IntrospectRequest, Key, KeyPressResponse, KeyPressState, KeySender, RemoveGroup, SpotifyAccountIntrospectResponse } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -264,4 +264,20 @@ export class SoundTouchApiClient {
 
         return this.parseResponse<SpotifyAccountIntrospectResponse>(res as any);
     }
+
+    /** 
+     * Get Introspect Data for the current Playback
+     * @todo validate other Introspect responses
+     * @returns void
+     */
+    async sendKeyPress(key: Key, state: KeyPressState, sender: KeySender): Promise<KeyPressResponse> {
+        const xml = `<key state="${state}" sender="${sender}">${key}</key>`;
+        const res = await this.client.post(this.baseURL + "/key", xml, {
+          headers: { "Content-Type": "application/xml" },
+        });
+
+        return this.parseResponse<KeyPressResponse>(res as any);
+    }
+
+
 }

@@ -235,3 +235,52 @@ export enum IntrospectSource {
   Pandora = "PANDORA",
   STORED_MUSIC = "STORED_MUSIC",
 }
+
+export enum Key {
+  AddFavorite = "ADD_FAVORITE",
+  AuxInput = "AUX_INPUT",
+  Bookmark = "BOOKMARK",
+  Mute = "MUTE",
+  NextTrack = "NEXT_TRACK",
+  Pause = "PAUSE",
+  Play = "PLAY",
+  PlayPause = "PLAY_PAUSE",
+  Power = "POWER",
+  Preset1 = "PRESET_1",
+  Preset2 = "PRESET_2",
+  Preset3 = "PRESET_3",
+  Preset4 = "PRESET_4",
+  Preset5 = "PRESET_5",
+  Preset6 = "PRESET_6",
+  PreviousTrack = "PREV_TRACK",
+  RemoveFavorite = "REMOVE_FAVORITE",
+  RepeatAll = "REPEAT_ALL",
+  RepeatOff = "REPEAT_OFF",
+  RepeatOne = "REPEAT_ONE",
+  ShuffleOff = "SHUFFLE_OFF",
+  ShuffleOn = "SHUFFLE_ON",
+  Stop = "STOP",
+  ThumbsDown = "THUMBS_DOWN",
+  ThumbsUp = "THUMBS_UP",
+  VolumeDown = "VOLUME_DOWN",
+  VolumeUp = "VOLUME_UP",
+}
+
+export enum KeyPressState {
+  Press = "press",
+  Release = "release",
+  Repeat = "repeat",
+}
+
+export enum KeySender {
+  Gabbo = "Gabbo",
+  IrRemote = "IrRemote",
+  Console = "Console",
+  LightswitchRemote = "LightswitchRemote",
+  BoselinkRemote = "BoselinkRemote",
+  Etap = "Etap",
+}
+
+export interface KeyPressResponse {
+  status: string;
+}
