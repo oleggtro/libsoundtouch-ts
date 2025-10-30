@@ -114,8 +114,7 @@ describe("SoundTouchAPI /group endpoint", () => {
   it("parses /addGroup response correctly", async () => {
 
 
-    const addGroup_response = `<?xml version='1.0' encoding='utf-8'?>
-<group id="1115893">
+    const addGroup_expectedBody = `<group>
   <name>Bose-ST10-1 + Bose-ST10-4</name>
   <masterDeviceId>9070658C9D4A</masterDeviceId>
   <roles>
@@ -130,14 +129,12 @@ describe("SoundTouchAPI /group endpoint", () => {
       <ipAddress>192.168.1.134</ipAddress>
     </groupRole>
   </roles>
-  <senderIPAddress>192.168.1.131</senderIPAddress>
-  <status>GROUP_OK</status>
 </group>`;
 
     nock(baseURL)
-      .post("/addGroup", undefined)
+      .post("/addGroup", addGroup_expectedBody)
       .matchHeader("Content-Type", "application/xml")
-      .reply(200, addGroup_response, { "Content-Type": "application/xml" });
+      .reply(200, mockXML_addGroup, { "Content-Type": "application/xml" });
 
 
     const sampleAddGroup: Group = { group: {

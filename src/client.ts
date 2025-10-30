@@ -201,7 +201,17 @@ export class SoundTouchApiClient {
      * @returns void
      */
     async addGroup(groupConfig: Group): Promise<Group> {
-        const xml = this.serializeRequestBody(groupConfig);
+        const xml = `<group>
+  <name>${groupConfig.group.name}</name>
+  <masterDeviceId>${groupConfig.group.masterDeviceId}</masterDeviceId>
+  <roles>
+    ${groupConfig.group.roles.map(role => `<groupRole>
+      <deviceId>${role.deviceId}</deviceId>
+      <role>${role.role}</role>
+      <ipAddress>${role.ipAddress}</ipAddress>
+    </groupRole>`).join("\n    ")}
+  </roles>
+</group>`; 
         const res = await this.client.post(this.baseURL + "/addGroup", xml, {
           headers: { "Content-Type": "application/xml" },
         });
