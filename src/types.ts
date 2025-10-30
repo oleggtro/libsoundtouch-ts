@@ -139,3 +139,13 @@ export interface ConfigurationStatus {
     "@_status": SoundTouchConfigurationStatus;
   };
 }
+
+
+export interface DSPMonoStereo {
+  DSPMonoStereo: {
+    "@_deviceID": string;
+    mono: {
+    "@_enable": false;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -166,5 +166,9 @@ export class SoundTouchApiClient {
 
     async getConfigurationStatus(): Promise<ConfigurationStatus> {
       return this.get<ConfigurationStatus>("/soundTouchConfigurationStatus");
+    }
+
+    async getDSPMonoStereo(): Promise<DSPMonoStereo> {
+      return this.get<DSPMonoStereo>("/DSPMonoStereo");
     }
 }
