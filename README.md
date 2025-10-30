@@ -29,7 +29,7 @@ Completed features so far:
 - [x] Group - Add Stereo Pair
 - [x] Group - Remove Stereo Member
 - [x] Group - Update Name
-- [ ] Introspect Data
+- [x] Introspect Data
 - [ ] Key Press, Release
 - [ ] Language
 - [ ] Media Servers List

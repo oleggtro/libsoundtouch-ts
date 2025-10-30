@@ -183,3 +183,55 @@ export enum GroupStatus {
 export interface RemoveGroup {
   group?: string;
 }
+
+/**
+ * @todo find other Introspect Responses
+ */
+export interface SpotifyAccountIntrospectResponse {
+  "@_state": IntrospectState;
+  "@_user": string;
+  "@_isPlaying": boolean;
+  "@_tokenLastChangedTimeSeconds": number;
+  "@_tokenLastChangedTimeMicroseconds": number;
+  "@_shuffleMode": boolean;
+  "@_playStatusState": number;
+  "@_currentUri": string;
+  "@_receivedPlaybackRequest": boolean;
+  "@_subscriptionType": string;
+  cachedPlaybackRequest: CachedPlaybackRequest;
+  nowPlaying: NowPlaying;
+  contentItemHistory: ContentItemHistory;
+}
+
+export interface NowPlaying {
+  "@_skipPreviousSupported": boolean;
+  "@_seekSupported": boolean;
+  "@_resumeSupported": boolean;
+  "@_collectData": boolean;
+}
+export interface ContentItemHistory {
+  "@_maxSize": number;
+}
+
+export interface CachedPlaybackRequest {
+}
+
+
+/**
+ * @todo find out what other Introspect states there are
+ */
+export enum IntrospectState {
+  InactiveUnselected = "InactiveUnselected",
+  // dont know what other states there are
+}
+
+export interface IntrospectRequest {
+  source: IntrospectSource;
+  sourceAccount: string;
+}
+
+export enum IntrospectSource {
+  Spotify = "SPOTIFY",
+  Pandora = "PANDORA",
+  STORED_MUSIC = "STORED_MUSIC",
+}

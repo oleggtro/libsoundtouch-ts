@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, RemoveGroup } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, IntrospectRequest, RemoveGroup, SpotifyAccountIntrospectResponse } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -22,7 +22,7 @@ export class SoundTouchApiClient {
 
     this.xmlParser = new XMLParser({
       ignoreAttributes: false, // keep @attributes
-      attributeNamePrefix: "", // cleaner property names
+      attributeNamePrefix: "",
       ignoreDeclaration: true, // ignore XML declaration
       // coerce attribute and tag values to native types where possible
       parseAttributeValue: true,
@@ -32,7 +32,7 @@ export class SoundTouchApiClient {
 
     this.xmlBuilder = new XMLBuilder({
       ignoreAttributes: false,
-      attributeNamePrefix: "",
+      attributeNamePrefix: "@_",
       suppressEmptyNode: true,
       format: false,
     });
@@ -251,4 +251,17 @@ export class SoundTouchApiClient {
         return this.parseResponse<Group>(res as any);
     }
 
+    /** 
+     * Get Introspect Data for the current Playback
+     * @todo validate other Introspect responses
+     * @returns void
+     */
+    async getIntrospect(request: IntrospectRequest): Promise<SpotifyAccountIntrospectResponse | undefined> {
+        const xml = `<introspect source="${request.source}" sourceAccount="${request.sourceAccount}" />`;
+        const res = await this.client.post(this.baseURL + "/introspect", xml, {
+          headers: { "Content-Type": "application/xml" },
+        });
+
+        return this.parseResponse<SpotifyAccountIntrospectResponse>(res as any);
+    }
 }
