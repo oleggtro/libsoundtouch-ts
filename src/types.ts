@@ -483,3 +483,17 @@ export enum PlaybackSource {
 export interface PlayNotificationBeepResponse {
   status: string;
 }
+
+
+export interface PlayURLRequest {
+  url: string;
+  app_key: string;
+  service: string;
+  message: string;
+  reason: string;
+  volume?: number;
+}
+
+export interface PlayURLResponse {
+  status: string;
+}
