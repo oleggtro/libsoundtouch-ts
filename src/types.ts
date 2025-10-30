@@ -200,11 +200,11 @@ export interface SpotifyAccountIntrospectResponse {
   "@_receivedPlaybackRequest": boolean;
   "@_subscriptionType": string;
   cachedPlaybackRequest: CachedPlaybackRequest;
-  nowPlaying: NowPlaying;
+  nowPlaying: IntrospectNowPlaying;
   contentItemHistory: ContentItemHistory;
 }
 
-export interface NowPlaying {
+export interface IntrospectNowPlaying {
   "@_skipPreviousSupported": boolean;
   "@_seekSupported": boolean;
   "@_resumeSupported": boolean;
@@ -398,4 +398,84 @@ export enum RSSI {
   NoSignal = "NoSignal",
   Poor = "Poor",
   Excellent = "Excellent",
+}
+
+export interface NowPlaying {
+  nowPlaying: {
+    "@_deviceID"?: string;
+    "@_source"?: PlaybackSource;
+    "@_sourceAccount"?: string;
+    ContentItem?: ContentItem;
+    track?: string;
+    artist?: string;
+    album?: string;
+    stationName?: string;
+    art?: Art;
+    favoriteEnabled?: Record<string, unknown> | null;
+    isFavorite?: Record<string, unknown> | null;
+    playStatus?: PlayStatus;
+    streamType?: StreamType;
+    time?: Time;
+    offset?: number | string;
+    skipEnabled?: Record<string, unknown> | null;
+    skipPreviousEnabled?: Record<string, unknown> | null;
+    skipPreviousSupported?: Record<string, unknown> | null;
+    shuffleSetting?: ShuffleSetting;
+    repeatSetting?: RepeatSetting;
+    artistID?: string | number;
+    trackID?: string | number;
+    rating?: string;
+    rateEnabled?: Record<string, unknown> | null;
+    isAdvertisement?: Record<string, unknown> | null;
+  };
+}
+
+export interface ContentItem {
+  "@_source"?: string;
+  "@_type"?: string;
+  "@_location"?: string;
+  "@_sourceAccount"?: string;
+  "@_isPresetable"?: boolean | string;
+  itemName?: string;
+  containerArt?: string;
+}
+
+export interface Art {
+  // parsers often expose attributes with the @_ prefix and inner text as either the property itself or "#text"
+  "@_artImageStatus"?: string;
+  "#text"?: string;
+}
+
+export interface Time {
+  "@_total"?: number | string;
+  "#text"?: number | string;
+}
+
+export enum StreamType {
+  RadioStreaming = "RADIO_STREAMING",
+  TrackOnDemand = "TRACK_ONDEMAND",
+}
+
+export enum PlayStatus {
+  PlayState = "PLAY_STATE",
+  PauseState = "PAUSE_STATE",
+  StopState = "STOP_STATE",
+}
+
+export enum ShuffleSetting {
+  ShuffleOff = "SHUFFLE_OFF",
+  ShuffleOn = "SHUFFLE_ON",
+}
+
+export enum RepeatSetting {
+  RepeatOff = "REPEAT_OFF",
+  RepeatOne = "REPEAT_ONE",
+  RepeatAll = "REPEAT_ALL",
+}
+
+export enum PlaybackSource {
+  TuneIN = "TUNEIN",
+  LocalMusic = "LOCAL_MUSIC",
+  StoredMusic = "STORED_MUSIC",
+  Pandora = "PANDORA",
 }
