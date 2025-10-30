@@ -42,7 +42,7 @@ Completed features so far:
 - [ ] Music Service - Track Info
 - [ ] Music Service - Remove Account
 - [ ] Music Service - Set Account
-- [ ] Name
+- [x] Name
 - [ ] Network Info
 - [ ] Network Status
 - [ ] Now Playing Status

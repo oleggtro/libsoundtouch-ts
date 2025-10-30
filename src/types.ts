@@ -307,3 +307,6 @@ export interface MediaServer {
   "@_model_description": string;
   "@_location": string;
 }
+export interface GetName {
+  name: string;
+}
