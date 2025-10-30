@@ -149,3 +149,32 @@ export interface DSPMonoStereo {
     }
   }
 }
+
+export enum GroupRoleRole {
+  Left = "LEFT",
+  Right = "RIGHT",
+}
+
+export interface GroupRole {
+  deviceId: string;
+  role: GroupRoleRole;
+  ipAddress: string;
+}
+
+
+export interface Group {
+  group: {
+    "@_deviceID": string;
+    name: string;
+    masterDeviceId: string;
+    roles: Array<GroupRole>;
+    senderIPAddress: string;
+    status: GroupStatus
+  }
+}
+
+
+export enum GroupStatus {
+  Ok = "GROUP_OK",
+  // Dont know what other states there are
+}

@@ -25,7 +25,7 @@ Completed features so far:
 - [x] Clock Time
 - [x] Configuration Status
 - [x] DSP Mono Stereo
-- [ ] Group - Status
+- [x] Group - Status
 - [ ] Group - Add Stereo Pair
 - [ ] Group - Remove Stereo Member
 - [ ] Group - Update Name
