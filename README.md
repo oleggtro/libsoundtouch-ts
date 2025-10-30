@@ -26,7 +26,7 @@ Completed features so far:
 - [x] Configuration Status
 - [x] DSP Mono Stereo
 - [x] Group - Status
-- [ ] Group - Add Stereo Pair
+- [x] Group - Add Stereo Pair
 - [ ] Group - Remove Stereo Member
 - [ ] Group - Update Name
 - [ ] Introspect Data

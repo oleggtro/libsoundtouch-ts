@@ -174,4 +174,17 @@ export class SoundTouchApiClient {
     async getGroup(): Promise<Group> {
       return this.get<Group>("/group");
     }
+
+    /**
+     * Clears Bluetooth pairing info
+     * @returns void
+     */
+    async addGroup(groupConfig: Group): Promise<Group> {
+        const res = await this.client.post(this.baseURL + "/addGroup", groupConfig, {
+          headers: { "Content-Type": "application/xml" },
+        });
+
+        return this.parseResponse<Group>(res as any);
+    }
+
 }

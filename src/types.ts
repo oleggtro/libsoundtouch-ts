@@ -164,12 +164,12 @@ export interface GroupRole {
 
 export interface Group {
   group: {
-    "@_deviceID": string;
+    "@_id"?: string;
     name: string;
     masterDeviceId: string;
     roles: Array<GroupRole>;
-    senderIPAddress: string;
-    status: GroupStatus
+    senderIPAddress?: string;
+    status?: GroupStatus
   }
 }
 
@@ -178,3 +178,4 @@ export enum GroupStatus {
   Ok = "GROUP_OK",
   // Dont know what other states there are
 }
+
