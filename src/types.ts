@@ -366,3 +366,36 @@ export enum NetworkSignalStrength {
   Good = "GOOD_SIGNAL",
   Excellent = "EXCELLENT_SIGNAL",
 }
+
+export interface NetworkStatus {
+  "network-data": {
+    devices: {
+      device: Array<{
+        "@_deviceID": string;
+        deviceSerialNumber: string;
+        interfaces: {
+          interface: Array<{
+            name: string;
+            "mac-addr": string;
+            bindings: {
+              ipv4address: string;
+            };
+            running: boolean;
+            kind: string;
+            ssid: string;
+            rssi: RSSI;
+            frequencyKHz: number;
+          }>;
+        };
+      }>;
+    };
+  }
+}
+
+export enum RSSI {
+  Good = "Good",
+  // guesses
+  NoSignal = "NoSignal",
+  Poor = "Poor",
+  Excellent = "Excellent",
+}

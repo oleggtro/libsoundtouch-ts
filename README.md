@@ -44,7 +44,7 @@ Completed features so far:
 - [ ] Music Service - Set Account
 - [x] Name
 - [x] Network Info
-- [ ] Network Status
+- [x] Network Status
 - [ ] Now Playing Status
 - [ ] Play Notification Beep
 - [ ] Play TTS Message
