@@ -44,6 +44,10 @@ const mockXML_addGroup = `<?xml version='1.0' encoding='utf-8'?>
   <status>GROUP_OK</status>
 </group>`;
 
+
+const mockXML_removeGroup = `<?xml version='1.0' encoding='utf-8'?>
+<group />`;
+
 describe("SoundTouchAPI /group endpoint", () => {
   const baseURL = "http://localhost:8090";
   let api: SoundTouchApiClient;
@@ -167,6 +171,19 @@ describe("SoundTouchAPI /group endpoint", () => {
       }
     });
     }); 
+
+  it("parses /removeGroup response correctly", async () => {
+    nock(baseURL)
+      .get("/removeGroup")
+      .reply(200, mockXML_removeGroup, { "Content-Type": "application/xml" });
+
+    const removeGroup = await api.removeGroup();
+
+    expect(removeGroup).toMatchObject({
+      group: ""
+    });
+  });
+
 
 
 });

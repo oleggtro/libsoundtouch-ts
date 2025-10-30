@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, RemoveGroup } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -185,6 +185,10 @@ export class SoundTouchApiClient {
         });
 
         return this.parseResponse<Group>(res as any);
+    }
+
+    async removeGroup(): Promise<RemoveGroup> {
+        return this.get<RemoveGroup>("/removeGroup");
     }
 
 }

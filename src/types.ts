@@ -179,3 +179,7 @@ export enum GroupStatus {
   // Dont know what other states there are
 }
 
+
+export interface RemoveGroup {
+  group?: string;
+}

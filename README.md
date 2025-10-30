@@ -27,7 +27,7 @@ Completed features so far:
 - [x] DSP Mono Stereo
 - [x] Group - Status
 - [x] Group - Add Stereo Pair
-- [ ] Group - Remove Stereo Member
+- [x] Group - Remove Stereo Member
 - [ ] Group - Update Name
 - [ ] Introspect Data
 - [ ] Key Press, Release
