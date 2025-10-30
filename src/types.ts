@@ -310,3 +310,59 @@ export interface MediaServer {
 export interface GetName {
   name: string;
 }
+
+/* 
+<?xml version="1.0" encoding="UTF-8" ?>
+<networkInfo wifiProfileCount="1">
+  <interfaces>
+    <interface type="WIFI_INTERFACE" name="wlan0" macAddress="3415131234CA" ipAddress="192.168.1.131" ssid="my_network_ssid" frequencyKHz="2452000" state="NETWORK_WIFI_CONNECTED" signal="MARGINAL_SIGNAL" mode="STATION" />
+    <interface type="WIFI_INTERFACE" name="wlan1" macAddress="3415131234CB" state="NETWORK_WIFI_DISCONNECTED" />
+  </interfaces>
+</networkInfo>*/
+
+export interface NetworkInfo {
+  networkInfo: {
+    "@_wifiProfileCount": number;
+    interfaces: {
+      interface: Array<{
+        "@_type": NetworkInterfaceType;
+        "@_name": string;
+        "@_macAddress": string;
+        "@_ipAddress": string;
+        "@_ssid": string;
+        "@_frequencyKHz": number;
+        "@_state": NetworkState;
+        "@_signal": NetworkSignalStrength;
+        "@_mode": NetworkMode;
+      }>;
+    };
+  };
+}
+
+
+export enum NetworkInterfaceType {
+  WifiInterface = "WIFI_INTERFACE",
+  // just a guess
+  EthernetInterface = "ETHERNET_INTERFACE",
+}
+
+export enum NetworkState {
+  WifiConnected = "NETWORK_WIFI_CONNECTED",
+  WifiDisconnected = "NETWORK_WIFI_DISCONNECTED",
+}
+
+export enum NetworkMode {
+  Station = "STATION",
+  // just a guess
+  AccessPoint = "ACCESS_POINT",
+}
+
+export enum NetworkSignalStrength {
+  Marginal = "MARGINAL_SIGNAL",
+
+  // just guesses
+  NoSignal = "NO_SIGNAL",
+  Poor = "POOR_SIGNAL",
+  Good = "GOOD_SIGNAL",
+  Excellent = "EXCELLENT_SIGNAL",
+}

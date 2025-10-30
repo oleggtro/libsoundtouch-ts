@@ -43,7 +43,7 @@ Completed features so far:
 - [ ] Music Service - Remove Account
 - [ ] Music Service - Set Account
 - [x] Name
-- [ ] Network Info
+- [x] Network Info
 - [ ] Network Status
 - [ ] Now Playing Status
 - [ ] Play Notification Beep
