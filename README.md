@@ -48,7 +48,7 @@ Completed features so far:
 - [x] Now Playing Status
 - [x] Play Notification Beep
 - [ ] Play TTS Message
-- [ ] Play URL
+- [x] Play URL
 - [ ] Power Management
 - [ ] Power Standby
 - [ ] Power Standby Low-Power
