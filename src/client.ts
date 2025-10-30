@@ -1,10 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { XMLParser } from "fast-xml-parser";
+import { XMLParser, XMLBuilder } from "fast-xml-parser";
 import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, Group, RemoveGroup } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
   private xmlParser: XMLParser;
+  private xmlBuilder: XMLBuilder;
   private baseURL: string;
 
   constructor(baseURL_param: string, apiKey?: string) {
@@ -28,6 +29,13 @@ export class SoundTouchApiClient {
       parseTagValue: true,
       trimValues: true,
     });
+
+    this.xmlBuilder = new XMLBuilder({
+      ignoreAttributes: false,
+      attributeNamePrefix: "",
+      suppressEmptyNode: true,
+      format: false,
+    });
   }
 
   private parseResponse<T = any>(response: AxiosResponse): T {
@@ -43,6 +51,18 @@ export class SoundTouchApiClient {
     } catch {
       return data as T;
     }
+  }
+
+  /**
+   * Serialize request body to XML when appropriate. If the body is already a string
+   * it is returned as-is. Null/undefined become an empty string.
+   */
+  private serializeRequestBody(body: any): string {
+    if (body === undefined || body === null) return "";
+    if (typeof body === "string") return body;
+
+    // fast-xml-parser's XMLBuilder expects an object where the root key becomes the root element.
+    return this.xmlBuilder.build(body);
   }
 
   async get<T>(path: string, config?: AxiosRequestConfig): Promise<T> {
@@ -176,19 +196,49 @@ export class SoundTouchApiClient {
     }
 
     /**
-     * Clears Bluetooth pairing info
+     * Adds this device into a new Group
+     * @param groupConfig Group to create
      * @returns void
      */
     async addGroup(groupConfig: Group): Promise<Group> {
-        const res = await this.client.post(this.baseURL + "/addGroup", groupConfig, {
+        const xml = this.serializeRequestBody(groupConfig);
+        const res = await this.client.post(this.baseURL + "/addGroup", xml, {
           headers: { "Content-Type": "application/xml" },
         });
 
         return this.parseResponse<Group>(res as any);
     }
 
+    /** 
+     * Remove this device from its current Group
+     * @returns void
+     */
     async removeGroup(): Promise<RemoveGroup> {
         return this.get<RemoveGroup>("/removeGroup");
+    }
+
+    /**
+     * Update the current Group
+     * @param name The new name of the Group
+     * @returns The new group state
+     */
+    async updateGroup(newGroup: Group): Promise<Group> {
+        const xml = `<group id="${newGroup.group["@_id"]}">
+  <name>${newGroup.group.name}</name>
+  <masterDeviceId>${newGroup.group.masterDeviceId}</masterDeviceId>
+  <roles>
+    ${newGroup.group.roles.map(role => `<groupRole>
+      <deviceId>${role.deviceId}</deviceId>
+      <role>${role.role}</role>
+      <ipAddress>${role.ipAddress}</ipAddress>
+    </groupRole>`).join("\n    ")}
+  </roles>
+</group>`;
+        const res = await this.client.post(this.baseURL + "/updateGroup", xml, {
+          headers: { "Content-Type": "application/xml" },
+        });
+
+        return this.parseResponse<Group>(res as any);
     }
 
 }
