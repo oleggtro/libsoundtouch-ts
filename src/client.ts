@@ -358,5 +358,17 @@ export class SoundTouchApiClient {
     return this.get<Presets>("/presets");
   }
 
+  async removePreset(id: number): Promise<Presets> {
+
+    if (id > 6 || id < 1) {
+      return Promise.reject("ID must be between 1 and 6");
+    }
+
+    const xml = `<preset id="${id}"></preset>`;
+    return (await this.client.post(this.baseURL + "/removePreset", xml, {
+      headers: { "Content-Type": "application/xml" },
+    }).then(res => this.parseResponse<Presets>(res as any)));
+  }
+
 
 }

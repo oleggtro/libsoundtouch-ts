@@ -37,6 +37,37 @@ const mockXML_presetResponse = `<?xml version="1.0" encoding="UTF-8"?>
   </preset>
 </presets>`;
 
+
+
+const mockXML_removePresetResponse = `<?xml version="1.0" encoding="UTF-8"?>
+<presets>
+  <preset id="1" createdOn="1700536011" updatedOn="1700536011">
+    <ContentItem source="TUNEIN" type="stationurl" location="/v1/playback/station/s33828" sourceAccount="" isPresetable="true">
+      <itemName>K-LOVE Radio</itemName>
+      <containerArt>http://cdn-profiles.tunein.com/s33828/images/logog.png?t=637986894890000000</containerArt>
+    </ContentItem>
+  </preset>
+  <preset id="2" createdOn="1700536010" updatedOn="1700536010">
+    <ContentItem source="TUNEIN" type="stationurl" location="/v1/playback/station/s309606" sourceAccount="" isPresetable="true">
+      <itemName>K-LOVE 2000s</itemName>
+      <containerArt>http://cdn-profiles.tunein.com/s309606/images/logog.png?t=637986893640000000</containerArt>
+    </ContentItem>
+  </preset>
+  <preset id="3" createdOn="1701220837" updatedOn="1701220837">
+    <ContentItem source="TUNEIN" type="stationurl" location="/v1/playback/station/s309605" sourceAccount="" isPresetable="true">
+      <itemName>My Copy K-Love 90s</itemName>
+      <containerArt>http://cdn-profiles.tunein.com/s309605/images/logog.png?t=637986891960000000</containerArt>
+    </ContentItem>
+  </preset>
+  <preset id="5" createdOn="1700536011" updatedOn="1700536011">
+    <ContentItem source="TUNEIN" type="stationurl" location="/v1/playback/station/s258421" sourceAccount="" isPresetable="true">
+      <itemName>K-LOVE Christmas Radio</itemName>
+      <containerArt>http://cdn-profiles.tunein.com/s258421/images/logog.png?t=637986893260000000</containerArt>
+    </ContentItem>
+  </preset>
+</presets>`;
+
+
 describe("SoundTouchAPI /presets endpoint", () => {
     const baseURL = "http://localhost:8090";
     let api: SoundTouchApiClient;
@@ -123,4 +154,98 @@ describe("SoundTouchAPI /presets endpoint", () => {
 
     });
 
+});
+
+
+describe("SoundTouchAPI /removePreset endpoint", () => {
+  const baseURL = "http://localhost:8090";
+  let api: SoundTouchApiClient;
+
+  beforeEach(() => {
+    api = new SoundTouchApiClient(baseURL);
+    nock.cleanAll();
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
+  });
+
+   it("parses /removePreset response correctly", async () => {
+
+    const expected_request = `<preset id="6"></preset>`;
+
+
+    nock(baseURL)
+      .post("/removePreset", expected_request)
+      .matchHeader("Content-Type", "application/xml")
+      .reply(200, mockXML_removePresetResponse, { "Content-Type": "application/xml" });
+
+
+    const removePresetResponse = await api.removePreset(6);
+    // Ensure the mocked endpoint was called
+    expect(nock.isDone()).toBe(true);
+
+    expect(removePresetResponse).toMatchObject({
+            presets: {
+                preset: [
+                    {
+                        id: 1,
+                        ContentItem: {
+                            source: PlaybackSource.TuneIN,
+                            sourceAccount: "",
+                            type: "stationurl",
+                            location: "/v1/playback/station/s33828",
+                            isPresetable: true,
+                            itemName: "K-LOVE Radio",
+                            containerArt: "http://cdn-profiles.tunein.com/s33828/images/logog.png?t=637986894890000000",
+                        },
+                        createdOn: 1700536011,
+                        updatedOn: 1700536011,
+                    },
+                    {
+                        id: 2,
+                        ContentItem: {
+                            source: PlaybackSource.TuneIN,
+                            type: "stationurl",
+                            sourceAccount: "",
+                            location: "/v1/playback/station/s309606",
+                            isPresetable: true,
+                            itemName: "K-LOVE 2000s",
+                            containerArt: "http://cdn-profiles.tunein.com/s309606/images/logog.png?t=637986893640000000",
+                        },
+                        createdOn: 1700536010,
+                        updatedOn: 1700536010
+                    },
+                    {
+                        id: 3,
+                        createdOn: 1701220837,
+                        updatedOn: 1701220837,
+                        ContentItem: {
+                            source: PlaybackSource.TuneIN,
+                            sourceAccount: "",
+                            type: "stationurl",
+                            location: "/v1/playback/station/s309605",
+                            isPresetable: true,
+                            itemName: "My Copy K-Love 90s",
+                            containerArt: "http://cdn-profiles.tunein.com/s309605/images/logog.png?t=637986891960000000",
+                        },
+                    },
+                    {
+                        id: 5,
+                        createdOn: 1700536011,
+                        updatedOn: 1700536011,
+                        ContentItem: {
+                            source: PlaybackSource.TuneIN,
+                            sourceAccount: "",
+                            type: "stationurl",
+                            location: "/v1/playback/station/s258421",
+                            isPresetable: true,
+                            itemName: "K-LOVE Christmas Radio",
+                            containerArt: "http://cdn-profiles.tunein.com/s258421/images/logog.png?t=637986893260000000",
+                        },
+                    }
+                ]
+            },
+        });
+    }); 
 });
