@@ -52,7 +52,7 @@ Completed features so far:
 - [x] Power Management
 - [x] Power Standby
 - [x] Power Standby Low-Power
-- [ ] Preset List
+- [x] Preset List
 - [ ] Preset Remove
 - [ ] Preset Store
 - [ ] Rebroadcast Latency Mode

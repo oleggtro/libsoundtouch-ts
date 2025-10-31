@@ -516,3 +516,10 @@ export enum PowerState {
 export interface StatusResponse {
   status: string;
 }
+
+export interface Presets {
+  presets: Array<{
+    id: string;
+    ContentItem: ContentItem;
+  }>;
+}
