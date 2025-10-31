@@ -49,8 +49,8 @@ Completed features so far:
 - [x] Play Notification Beep
 - [ ] Play TTS Message
 - [x] Play URL
-- [ ] Power Management
-- [ ] Power Standby
+- [x] Power Management
+- [x] Power Standby
 - [ ] Power Standby Low-Power
 - [ ] Preset List
 - [ ] Preset Remove

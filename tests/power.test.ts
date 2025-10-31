@@ -3,13 +3,17 @@ import nock from "nock";
 import { SoundTouchApiClient } from "../src/client.js";
 import { PowerState } from "../src/types.js";
 
-const mockXML_response = `<?xml version="1.0" encoding="UTF-8" ?>
+const mockXML_powerManagementResponse = `<?xml version="1.0" encoding="UTF-8" ?>
 <powerManagementResponse>
   <powerState>FullPower</powerState>
   <battery>
     <capable>false</capable>
   </battery>
 </powerManagementResponse>`;
+
+
+const mockXML_standbyResponse = `<?xml version="1.0" encoding="UTF-8" ?>
+<status>/standby</status>`;
 
 describe("SoundTouchAPI /powerManagement endpoint", () => {
   const baseURL = "http://localhost:8090";
@@ -27,7 +31,7 @@ describe("SoundTouchAPI /powerManagement endpoint", () => {
   it("parses /powerMangement response correctly", async () => {
     nock(baseURL)
       .get("/powerManagement")
-      .reply(200, mockXML_response, { "Content-Type": "application/xml" });
+      .reply(200, mockXML_powerManagementResponse, { "Content-Type": "application/xml" });
 
     const powerState = await api.getPowerState();
 
@@ -37,6 +41,34 @@ describe("SoundTouchAPI /powerManagement endpoint", () => {
         battery: {
             capable: false
         }}
+    });
+  });
+
+});
+
+
+describe("SoundTouchAPI /standby endpoint", () => {
+  const baseURL = "http://localhost:8090";
+  let api: SoundTouchApiClient;
+
+  beforeEach(() => {
+    api = new SoundTouchApiClient(baseURL);
+    nock.cleanAll();
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
+  });
+
+  it("parses /standby response correctly", async () => {
+    nock(baseURL)
+      .get("/standby")
+      .reply(200, mockXML_standbyResponse, { "Content-Type": "application/xml" });
+
+    const standby = await api.setStandby();
+
+    expect(standby).toMatchObject({
+        status: "/standby"
     });
   });
 

@@ -1,9 +1,17 @@
 {
-  "name": "libsoundtouch-ts",
-  "version": "1.0.0",
-  "description": "A wrapper around Boses Local Soundtouch API",
-  "main": "index.js",
-  "author": "Ole Donnermeyer <ole@oleggtro.com>",
+  "name": "libsoundtouch",
+  "version": "0.1.0",
+  "description": "A pure typescript wrapper around Boses Local Soundtouch API",
+  "homepage": "https://github.com/oleggtro/libsoundtouch-ts",
+  "bugs": {
+    "url": "https://github.com/oleggtro/libsoundtouch-ts/issues"
+  },
+  "author": "Ole Donnermeyer <ole@oleggtro.com> (https://oleggtro.com)",
+  "main": "src/client.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oleggtro/libsoundtouch-ts.git"
+  },
   "license": "MIT",
   "dependencies": {
     "axios": "^1.13.1",

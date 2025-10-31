@@ -511,3 +511,8 @@ export enum PowerState {
   FullPower = "FullPower",
   // add other states if known
 }
+
+
+export interface StatusResponse {
+  status: string;
+}

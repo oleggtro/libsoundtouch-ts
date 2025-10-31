@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { XMLParser, XMLBuilder } from "fast-xml-parser";
-import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, GetName, Group, IntrospectRequest, Key, KeyPressResponse, KeyPressState, KeySender, Language, ListMediaServersResponse, NetworkInfo, NetworkStatus, NowPlaying, PlayNotificationBeepResponse, PlayURLRequest, PlayURLResponse, PowerManagementResponse, RemoveGroup, SpotifyAccountIntrospectResponse } from "./types.js";
+import { AudioDSPControls, AudioDSPMode, Bass, BassCapabilities, BluetoothInfo, Capabilities, ClockDisplay, ClockTime, ConfigurationStatus, DeviceInfo, DSPMonoStereo, GetName, Group, IntrospectRequest, Key, KeyPressResponse, KeyPressState, KeySender, Language, ListMediaServersResponse, NetworkInfo, NetworkStatus, NowPlaying, PlayNotificationBeepResponse, PlayURLRequest, PlayURLResponse, PowerManagementResponse, RemoveGroup, SpotifyAccountIntrospectResponse, StatusResponse } from "./types.js";
 
 export class SoundTouchApiClient {
   private client: AxiosInstance;
@@ -345,6 +345,9 @@ export class SoundTouchApiClient {
     return this.get<PowerManagementResponse>("/powerManagement");
   }
 
+  async setStandby(): Promise<StatusResponse> {
+    return this.get<StatusResponse>("/standby");
+  }
 
 
 }
