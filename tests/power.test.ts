@@ -15,6 +15,9 @@ const mockXML_powerManagementResponse = `<?xml version="1.0" encoding="UTF-8" ?>
 const mockXML_standbyResponse = `<?xml version="1.0" encoding="UTF-8" ?>
 <status>/standby</status>`;
 
+const mockXML_lowPowerStandbyResponse = `<?xml version="1.0" encoding="UTF-8" ?>
+<status>/lowPowerStandby</status>`;
+
 describe("SoundTouchAPI /powerManagement endpoint", () => {
   const baseURL = "http://localhost:8090";
   let api: SoundTouchApiClient;
@@ -69,6 +72,33 @@ describe("SoundTouchAPI /standby endpoint", () => {
 
     expect(standby).toMatchObject({
         status: "/standby"
+    });
+  });
+
+});
+
+describe("SoundTouchAPI /lowPowerStandby endpoint", () => {
+  const baseURL = "http://localhost:8090";
+  let api: SoundTouchApiClient;
+
+  beforeEach(() => {
+    api = new SoundTouchApiClient(baseURL);
+    nock.cleanAll();
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
+  });
+
+  it("parses /lowPowerStandby response correctly", async () => {
+    nock(baseURL)
+      .get("/lowPowerStandby")
+      .reply(200, mockXML_lowPowerStandbyResponse, { "Content-Type": "application/xml" });
+
+    const standby = await api.setLowPowerStandby();
+
+    expect(standby).toMatchObject({
+        status: "/lowPowerStandby"
     });
   });
 

@@ -51,7 +51,7 @@ Completed features so far:
 - [x] Play URL
 - [x] Power Management
 - [x] Power Standby
-- [ ] Power Standby Low-Power
+- [x] Power Standby Low-Power
 - [ ] Preset List
 - [ ] Preset Remove
 - [ ] Preset Store

@@ -349,5 +349,9 @@ export class SoundTouchApiClient {
     return this.get<StatusResponse>("/standby");
   }
 
+  async setLowPowerStandby(): Promise<StatusResponse> {
+    return this.get<StatusResponse>("/lowPowerStandby");
+  }
+
 
 }
